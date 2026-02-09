@@ -12,7 +12,7 @@ import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import "./App.css";
 import { Toaster } from "./components/refine-ui/notification/toaster";
 import { useNotificationProvider } from "./components/refine-ui/notification/use-notification-provider";
@@ -54,6 +54,11 @@ function App() {
                   create: "/classes/create",
                   meta: { label: "Classes", icon: <GraduationCap /> },
                 },
+                {
+                  name: "users",
+                  list: "/",
+                  meta: { hide: true },
+                },
               ]}
             >
               <Routes>
@@ -73,6 +78,7 @@ function App() {
                     <Route index element={<ClassesList />} />
                     <Route path="create" element={<ClassesCreate />} />
                   </Route>
+                  <Route path="api/users" element={<Navigate to="/" replace />} />
                 </Route>
               </Routes>
               <Toaster />
