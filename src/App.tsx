@@ -20,6 +20,7 @@ import { ThemeProvider } from "./components/refine-ui/theme/theme-provider";
 import { dataProvider } from "./providers/data";
 import Dashboard from "./pages/dashboard";
 import SubjectsCreate from "./pages/subjects/create";
+import ClassesShow from "./pages/classes/show";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
                   name: "classes",
                   list: "/classes",
                   create: "/classes/create",
+                  show: "/classes/show/:id",
                   meta: { label: "Classes", icon: <GraduationCap /> },
                 },
                 {
@@ -77,6 +79,7 @@ function App() {
                   <Route path="classes">
                     <Route index element={<ClassesList />} />
                     <Route path="create" element={<ClassesCreate />} />
+                    <Route path="show/:id" element={<ClassesShow />} />
                   </Route>
                   <Route path="api/users" element={<Navigate to="/" replace />} />
                 </Route>
