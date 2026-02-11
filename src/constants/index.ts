@@ -57,7 +57,13 @@ export const ALLOWED_TYPES = [
 
 export const CLOUDINARY_UPLOAD_URL = import.meta.env.VITE_CLOUDINARY_UPLOAD_URL;
 export const CLOUDINARY_CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-export const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
+// Vercel'de proxy kullan: aynı origin'e istek at, CORS yok. Local'de env'deki backend URL.
+const isVercelApp =
+  typeof window !== "undefined" &&
+  window.location.origin === "https://pern-dashboard-up2l.vercel.app";
+export const BACKEND_BASE_URL = isVercelApp
+  ? "/api/"
+  : (import.meta.env.VITE_BACKEND_BASE_URL ?? "");
 
 export const BASE_URL = import.meta.env.VITE_API_URL;
 export const ACCESS_TOKEN_KEY = import.meta.env.VITE_ACCESS_TOKEN_KEY;
