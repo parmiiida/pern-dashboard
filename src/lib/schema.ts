@@ -11,6 +11,11 @@ export const facultySchema = z.object({
   imageCldPubId: z.string().optional(),
 });
 
+export const departmentSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  description: z.string().min(1, "Description is required"),
+});
+
 export const subjectSchema = z.object({
   name: z.string().min(3, "Subject name must be at least 3 characters"),
   code: z.string().min(5, "Subject code must be at least 5 characters"),

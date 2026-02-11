@@ -20,7 +20,9 @@ const options: CreateDataProviderOptions = {
 
       filters?.forEach((filter) => {
         const field = "field" in filter ? filter.field : "";
-        const value = String(filter.value);
+        const value = String(filter.value ?? "").trim();
+
+        if (!value) return;
 
         if (field === "role") {
           params.role = value;
