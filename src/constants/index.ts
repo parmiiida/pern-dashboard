@@ -57,13 +57,14 @@ export const ALLOWED_TYPES = [
 
 export const CLOUDINARY_UPLOAD_URL = import.meta.env.VITE_CLOUDINARY_UPLOAD_URL;
 export const CLOUDINARY_CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-// Vercel'de proxy kullan: aynı origin'e istek at, CORS yok. Local'de env'deki backend URL.
-const isVercelApp =
-  typeof window !== "undefined" &&
-  window.location.origin === "https://pern-dashboard-up2l.vercel.app";
-export const BACKEND_BASE_URL = isVercelApp
-  ? "/api/"
-  : (import.meta.env.VITE_BACKEND_BASE_URL ?? "");
+// Deploy edilmiş frontend → Railway backend. Local → env'deki URL (localhost:8000).
+const RAILWAY_BACKEND = "https://pern-dashboard-backend-production.up.railway.app/api/";
+const isLocalhost =
+  typeof window === "undefined" ||
+  /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/?$/i.test(window.location.origin);
+export const BACKEND_BASE_URL = isLocalhost
+  ? (import.meta.env.VITE_BACKEND_BASE_URL ?? "")
+  : RAILWAY_BACKEND;
 
 export const CLOUDINARY_UPLOAD_PRESET = import.meta.env
   .VITE_CLOUDINARY_UPLOAD_PRESET;
