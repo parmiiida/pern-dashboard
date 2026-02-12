@@ -118,7 +118,6 @@ export const authProvider: AuthProvider = {
   },
   check: async () => {
     const user = localStorage.getItem("user");
-
     if (user) {
       return {
         authenticated: true,
