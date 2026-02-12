@@ -15,6 +15,25 @@ A React Framework for building internal tools, admin panels, dashboards & B2B ap
 
 Refine's hooks and components simplifies the development process and eliminates the repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including authentication, access control, routing, networking, state management, and i18n.
 
+## Local development (önerilen)
+
+Backend ile birlikte çalıştırmak için:
+
+1. **Backend** (ayrı terminal):
+   ```bash
+   cd pern-dashboard-backend && npm run dev
+   ```
+   → `http://localhost:8000`
+
+2. **Frontend**:
+   ```bash
+   cd pern-dashboard-frontend && npm run dev
+   ```
+   → `http://localhost:5173`
+
+`.env` içinde `VITE_BACKEND_BASE_URL=http://localhost:8000/api/` olmalı.  
+**Netlify Dev (port 5001) yerine bu yöntemi kullanın** – böylece `/api/.auth/sessions/whoami` 404’ü oluşmaz.
+
 ## Available Scripts
 
 ### Running the development server.

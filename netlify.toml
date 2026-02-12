@@ -1,0 +1,12 @@
+# Netlify Dev kullanıyorsanız: /.auth/sessions/whoami 404 yerine 200 döner
+[[redirects]]
+  from = "/api/.auth/sessions/whoami"
+  to = "/.netlify/functions/whoami"
+  status = 200
+  force = true
+
+# SPA fallback (Netlify deploy için)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

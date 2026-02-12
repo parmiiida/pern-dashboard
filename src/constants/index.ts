@@ -65,16 +65,5 @@ export const BACKEND_BASE_URL = isVercelApp
   ? "/api/"
   : (import.meta.env.VITE_BACKEND_BASE_URL ?? "");
 
-// Better Auth client mutlak URL ister (relative /api/auth geçersiz)
-export const AUTH_BASE_URL = isVercelApp
-  ? `${typeof window !== "undefined" ? window.location.origin : "https://pern-dashboard-up2l.vercel.app"}/api/auth`
-  : `${import.meta.env.VITE_BACKEND_BASE_URL ?? ""}auth`;
-
-export const BASE_URL = import.meta.env.VITE_API_URL;
-export const ACCESS_TOKEN_KEY = import.meta.env.VITE_ACCESS_TOKEN_KEY;
-export const REFRESH_TOKEN_KEY = import.meta.env.VITE_REFRESH_TOKEN_KEY;
-
-export const REFRESH_TOKEN_URL = `${BASE_URL}/refresh-token`;
-
 export const CLOUDINARY_UPLOAD_PRESET = import.meta.env
   .VITE_CLOUDINARY_UPLOAD_PRESET;
