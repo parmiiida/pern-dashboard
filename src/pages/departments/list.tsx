@@ -1,14 +1,14 @@
+import { Link } from "react-router";
 import { Breadcrumb } from "@/components/refine-ui/layout/breadcrumb";
 import { ListView } from "@/components/refine-ui/views/list-view";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/refine-ui/data-table/data-table";
-import { useMemo } from "react";
 import { CreateButton } from "@/components/refine-ui/buttons/create";
-import { ShowButton } from "@/components/refine-ui/buttons/show";
 import { Department } from "@/types";
 
 const DepartmentsList = () => {
@@ -52,14 +52,9 @@ const DepartmentsList = () => {
           size: 100,
           header: () => null,
           cell: ({ row }) => (
-            <ShowButton
-              resource="departments"
-              recordItemId={row.original.id}
-              variant="outline"
-              size="sm"
-            >
-              View
-            </ShowButton>
+            <Button variant="outline" size="sm" asChild>
+              <Link to={`/departments/show/${row.original.id}`}>View</Link>
+            </Button>
           ),
         },
       ],
@@ -92,7 +87,7 @@ const DepartmentsList = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <CreateButton />
+          <CreateButton resource="departments" />
         </div>
       </div>
       <DataTable table={departmentTable} />

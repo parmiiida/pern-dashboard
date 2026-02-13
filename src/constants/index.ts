@@ -1,4 +1,4 @@
-import { GraduationCap, School } from "lucide-react";
+import { GraduationCap, School, Shield } from "lucide-react";
 
 export const USER_ROLES = {
   STUDENT: "student",
@@ -16,6 +16,11 @@ export const ROLE_OPTIONS = [
     value: USER_ROLES.TEACHER,
     label: "Teacher",
     icon: School,
+  },
+  {
+    value: USER_ROLES.ADMIN,
+    label: "Admin",
+    icon: Shield,
   },
 ];
 
@@ -57,14 +62,18 @@ export const ALLOWED_TYPES = [
 
 export const CLOUDINARY_UPLOAD_URL = import.meta.env.VITE_CLOUDINARY_UPLOAD_URL;
 export const CLOUDINARY_CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-// Deploy edilmiş frontend → Railway backend. Local → env'deki URL (localhost:8000).
+
+export const AUTH_TOKEN_KEY = "auth_token";
+export const AUTH_USER_KEY = "auth_user";
+
+// Deploy → Railway. Local → env (localhost:8000).
 const RAILWAY_BACKEND = "https://pern-dashboard-backend-production.up.railway.app/api/";
-const isLocalhost =
-  typeof window === "undefined" ||
-  /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/?$/i.test(window.location.origin);
-export const BACKEND_BASE_URL = isLocalhost
-  ? (import.meta.env.VITE_BACKEND_BASE_URL ?? "")
-  : RAILWAY_BACKEND;
+const envUrl = import.meta.env.VITE_BACKEND_BASE_URL ?? "";
+const isLocalDev =
+  typeof window !== "undefined" &&
+  envUrl.length > 0 &&
+  /localhost|127\.0\.0\.1/i.test(envUrl);
+export const BACKEND_BASE_URL = isLocalDev ? envUrl : RAILWAY_BACKEND;
 
 export const CLOUDINARY_UPLOAD_PRESET = import.meta.env
   .VITE_CLOUDINARY_UPLOAD_PRESET;

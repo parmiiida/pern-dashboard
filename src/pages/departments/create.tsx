@@ -26,6 +26,7 @@ const DepartmentsCreate = () => {
       action: "create",
     },
     defaultValues: {
+      code: "",
       name: "",
       description: "",
     },
@@ -54,6 +55,19 @@ const DepartmentsCreate = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <FormField
                 control={control}
+                name="code"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Code</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g. CS" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
@@ -70,7 +84,7 @@ const DepartmentsCreate = () => {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel>Description (optional)</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Department description"
